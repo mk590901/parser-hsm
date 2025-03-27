@@ -6,10 +6,12 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:parser_hsm/operators.dart';
+import 'package:parser_hsm/parser_controller.dart';
 import 'package:parser_hsm/parser_helper.dart';
 
 void main() {
-  test('parser', () {
+  test('ParserHelper', () {
     ParserHelper hsmHelper = ParserHelper();
     expect(hsmHelper.state(), 'parser');
     hsmHelper.init();
@@ -39,4 +41,13 @@ void main() {
     hsmHelper.run('Reset');
     expect(hsmHelper.state(), 'idle');
   });
+
+
+  test('ParserController', () {
+    ParserController parserController = ParserController('ZwLight.Brightness >= 50', Operators());
+    expect(parserController,isNotNull);
+    parserController.parse();
+    expect(parserController.tokens.size(),3);
+  });
+
 }

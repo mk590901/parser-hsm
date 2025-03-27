@@ -26,6 +26,7 @@ class ParserHelper {
 	}
 
 	void idleNextchar([Object? data]) {
+		parserController?.getNewChar();
 	}
 
 	void waitNextCharEntry([Object? data]) {
@@ -41,6 +42,7 @@ class ParserHelper {
 	}
 
 	void endTokenNextchar([Object? data]) {
+		parserController?.getNewChar();
 	}
 
 	void endTokenExit([Object? data]) {
@@ -50,18 +52,21 @@ class ParserHelper {
 	}
 
 	void waitNextCharEol([Object? data]) {
+		parserController?.stop();
 	}
 
 	void stopEntry([Object? data]) {
 	}
 
 	void waitNextCharValidchar([Object? data]) {
+		parserController?.initToken();
 	}
 
 	void accumulateTokenEntry([Object? data]) {
 	}
 
 	void waitNextCharKeywordchar([Object? data]) {
+		parserController?.initToken();
 	}
 
 	void accumulateKeywordEntry([Object? data]) {
@@ -71,33 +76,41 @@ class ParserHelper {
 	}
 
 	void accumulateKeywordEol([Object? data]) {
+		parserController?.setTokenV1();
 	}
 
 	void endTokenEntry([Object? data]) {
 	}
 
 	void accumulateKeywordValidchar([Object? data]) {
+		parserController?.accumulateToken();
 	}
 
 	void accumulateKeywordKeywordchar([Object? data]) {
+		parserController?.accumulateToken();
 	}
 
 	void accumulateKeywordInvisiblechar([Object? data]) {
+		parserController?.setTokenV1();
 	}
 
 	void accumulateTokenExit([Object? data]) {
 	}
 
 	void accumulateTokenEol([Object? data]) {
+		parserController?.setTokenV1();
 	}
 
 	void accumulateTokenValidchar([Object? data]) {
+		parserController?.accumulateToken();
 	}
 
 	void accumulateTokenKeywordchar([Object? data]) {
+		parserController?.setTokenV2();
 	}
 
 	void accumulateTokenInvisiblechar([Object? data]) {
+		parserController?.setTokenV1();
 	}
 
 	void init() {

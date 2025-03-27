@@ -23,7 +23,12 @@ class ParserController {
   ParserController(this.source, Operators this.operators) {
     stateMachine = ParserHelper();
     stateMachine?.setController(this);
+    stateMachine?.init();
     init();
+  }
+
+  void parse() {
+    stateMachine?.run('NextChar');
   }
 
   void dispose() {
@@ -142,6 +147,8 @@ class ParserController {
   void stop() {
     trace("ParserController.stop");
     stopParsing();
+    tokens.trace('stop');
+    dispose();
   }
 
   void setError() {
@@ -151,7 +158,7 @@ class ParserController {
   void getNewChar() {
     if (index >= source.length) {
       trace("ParserController.getNewChar->[EOL]");
-      stateMachine?.run('Eol');
+      stateMachine?.run('EOL');
       return;
     }
     setCurrentChar(source[index]);
@@ -162,7 +169,7 @@ class ParserController {
 
   String checkCharacter(String currentChar) {
     if (currentChar.codeUnitAt(0) <= 32) {
-      return 'Eol';
+      return 'EOL';
     } else if (charIsKeywordChar(currentChar)) {
       return 'KeywordChar';
     } else {
@@ -174,7 +181,4 @@ class ParserController {
     return tokens;
   }
 
-  void parse() {
-    stateMachine?.run('NextChar');
-  }
 }
