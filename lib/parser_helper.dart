@@ -83,7 +83,7 @@ class ParserHelper {
 	}
 
 	void accumulateKeywordValidchar([Object? data]) {
-		parserController?.accumulateToken();
+		parserController?.setTokenV2();
 	}
 
 	void accumulateKeywordKeywordchar([Object? data]) {

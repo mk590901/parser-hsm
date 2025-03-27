@@ -43,11 +43,18 @@ void main() {
   });
 
 
-  test('ParserController', () {
+  test('ParserController One', () {
     ParserController parserController = ParserController('ZwLight.Brightness >= 50', Operators());
     expect(parserController,isNotNull);
     parserController.parse();
     expect(parserController.tokens.size(),3);
+  });
+
+  test('ParserController Two', () {
+    ParserController parserController = ParserController('ZwLight.Brightness >= (50+4*8-BLE.Light.Brightness)', Operators());
+    expect(parserController,isNotNull);
+    parserController.parse();
+    expect(parserController.tokens.size(),11);
   });
 
 }
