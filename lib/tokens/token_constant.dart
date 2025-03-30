@@ -6,7 +6,7 @@ class TokenConstant extends Token {
 
   @override
   String toText() {
-    return '\'${getName().padRight(2)}\'\t${getType()}\tConstant';
+    return '\'${getName()}\'\t${getType()}\tConstant';
   }
 
   @override

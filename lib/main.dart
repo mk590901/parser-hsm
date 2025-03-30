@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/list_bloc.dart';
 
 void main() {
-  runApp(const MaterialApp(home: ParserPage()));
+  runApp(const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ParserPage()));
 }
 
 class ParserPage extends StatelessWidget {

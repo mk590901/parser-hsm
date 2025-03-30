@@ -7,7 +7,7 @@ class TokenOperator extends Token {
 
   @override
   String toText() {
-    return '\'${getName().padRight(2)}\'\t${getType()}\tOperator';
+    return '\'${getName()}\'\t${getType()}\tOperator';
   }
 
   @override
