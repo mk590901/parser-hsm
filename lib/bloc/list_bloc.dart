@@ -47,7 +47,7 @@ class ListBloc extends Bloc<ListEvent, ListState> {
   ListBloc()
     : super(
         ListState(
-          selectedOption: /*'ZwLight.Brightness >= 50'*/ items[0],
+          selectedOption: items[0],
           items: [],
         ),
       ) {
