@@ -6,7 +6,7 @@ class TokenVariable extends Token {
 
   @override
   String toText() {
-    return '${getName().padRight(24)}\t${getType()}\tVariable';
+    return '\'${getName().padRight(2)}\'\t${getType()}\tVariable';
   }
 
   @override

@@ -1,10 +1,13 @@
 import '../interfaces.dart';
+import '../parser_controller.dart';
 import 'token_variable.dart';
 
 class Tokens {
   static const String TAG = "ParserController";
   int currentIndex = 0;
   final List<IToken> container = [];
+
+  ParserController? controller;
 
   Tokens() {
     container.clear();
@@ -52,8 +55,15 @@ class Tokens {
     print('------- $text -------');
     for (int i = 0; i < size(); i++) {
       IToken token = get(i);
+      String line = '(${i.toString().padLeft(2)}) ${token.toText()}';
       print('(${i.toString().padLeft(2)})\t${token.toText()}');
+      controller?.addLine(line);
     }
     print('+++++++ $text +++++++');
   }
+
+  void setController(ParserController? parserController) {
+    controller = parserController;
+  }
+
 }

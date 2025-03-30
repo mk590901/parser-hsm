@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'bloc/list_bloc.dart';
 import 'interfaces.dart';
 import 'operators.dart';
 import 'parser_helper.dart';
@@ -20,9 +21,12 @@ class ParserController {
 
   ParserHelper? stateMachine;
 
-  ParserController(this.source, Operators this.operators) {
+  ListBloc? bloc;
+
+  ParserController(this.bloc, this.source, Operators this.operators) {
     stateMachine = ParserHelper();
     stateMachine?.setController(this);
+    tokens.setController(this);
     stateMachine?.init();
     init();
   }
@@ -33,6 +37,10 @@ class ParserController {
 
   void dispose() {
     //stateMachine?.dispose();
+  }
+
+  void addLine(String line) {
+    bloc?.add(AddItemEvent(line));
   }
 
   String? getSource() => source;
