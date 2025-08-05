@@ -8,25 +8,25 @@ class ThreadedCodeExecutor {
   final IQHsmStateMachineHelper _helper;
   final String _targetState;
 
- // late int counter = 0;
+  late int counter = 0;
 
   ThreadedCodeExecutor(this._helper, this._targetState, this._functions) {
     runner = Runner(_helper);
   }
 
-  void post(String event, [Object? data]) {
-    runner.post(event, data);
-  }
+  // void post(String event, [Object? data]) {
+  //   runner.post(event, data);
+  // }
 
   void executeSync([Object? data]) {
-    // counter++;
-    // print ("- counter->$counter");
+    counter++;
+    print ("- counter->$counter");
     _helper.setState(_targetState);
      for (Function func in _functions) {
       func(data);
     }
-    // counter--;
-    // print ("+ counter->$counter");
+    counter--;
+    print ("+ counter->$counter");
   }
 
   // void trace(String state, String event) {

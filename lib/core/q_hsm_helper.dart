@@ -15,37 +15,6 @@ class QHsmHelper implements IQHsmStateMachineHelper {
     _container[createKey(state,event)] = executor;
   }
 
-  // void runAsync (String state, String event, [Object? data]) {
-  //   String key = createKey(state, event);
-  //   if (!_container.containsKey(key)) {
-  //     print('runAsync.error: $state->$event');
-  //     return;
-  //   }
-  //   ThreadedCodeExecutor? executor = _container[key];
-  //   executor?.executeAsync(data);
-  // }
-
-  // void runSync (String state, String event, [Object? data]) {
-  //   String key = createKey(state, event);
-  //   if (!_container.containsKey(key)) {
-  //     print('runSync.error: $state->$event');
-  //     return;
-  //   }
-  //   ThreadedCodeExecutor? executor = _container[key];
-  //   executor?.executeSync(data);
-  // }
-
-  // void run (String event, [Object? data]) {
-  //   String key = createKey(state, event);
-  //   if (!_container.containsKey(key)) {
-  //     print('runSync.error: $state->$event');
-  //     return;
-  //   }
-  //   ThreadedCodeExecutor? executor = _container[key];
-  //   executor?.executeSync(data);
-  // }
-
-
   void post(String event, [Object? data]) {
     runner.post(event, data);
   }
