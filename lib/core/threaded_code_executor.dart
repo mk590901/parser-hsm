@@ -8,6 +8,8 @@ class ThreadedCodeExecutor {
   final IQHsmStateMachineHelper _helper;
   final String _targetState;
 
+ // late int counter = 0;
+
   ThreadedCodeExecutor(this._helper, this._targetState, this._functions) {
     runner = Runner(_helper);
   }
@@ -17,10 +19,14 @@ class ThreadedCodeExecutor {
   }
 
   void executeSync([Object? data]) {
+    // counter++;
+    // print ("- counter->$counter");
     _helper.setState(_targetState);
      for (Function func in _functions) {
       func(data);
     }
+    // counter--;
+    // print ("+ counter->$counter");
   }
 
   // void trace(String state, String event) {

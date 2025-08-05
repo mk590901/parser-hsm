@@ -26,16 +26,11 @@ class Runner {
   Runner (this._helper);
 
   void post(String event, [Object? data]) {
-    //print('post.addQueue [$event($data)]');
-    //scheduleMicrotask(() {  //  ?
-      _eventsQueue.add(TcEventWrapper(event, data));
-      while (_eventsQueue.isNotEmpty) {
-        TcEventWrapper eventWrapper = _eventsQueue.removeFirst();
-        //print('post event [${eventWrapper.event()}, ${eventWrapper.data()}]');
-        ThreadedCodeExecutor? executor = _helper?.executor(
-            eventWrapper.event());
-        executor?.executeSync(data);
-      }
-    //}); //  ?
+    _eventsQueue.add(TcEventWrapper(event, data));
+    while (_eventsQueue.isNotEmpty) {
+      TcEventWrapper eventWrapper = _eventsQueue.removeFirst();
+      ThreadedCodeExecutor? executor = _helper?.executor(eventWrapper.event());
+      executor?.executeSync(data);
+    }
   }
 }
