@@ -3,7 +3,7 @@ import 'runner.dart';
 
 class ThreadedCodeExecutor {
 
-  late Runner runner;
+  //late Runner runner;
   final List<Function> _functions;
   final IQHsmStateMachineHelper _helper;
   final String _targetState;
@@ -11,7 +11,7 @@ class ThreadedCodeExecutor {
   late int counter = 0;
 
   ThreadedCodeExecutor(this._helper, this._targetState, this._functions) {
-    runner = Runner(_helper);
+    //runner = Runner(_helper);
   }
 
   // void post(String event, [Object? data]) {

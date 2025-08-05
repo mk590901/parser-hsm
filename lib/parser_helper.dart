@@ -12,6 +12,10 @@ class ParserHelper {
 		createHelper();
 	}
 
+	void dispose() {
+		helper_.dispose();
+	}
+
 	void setController(ParserController? parserController_) {
 		parserController = parserController_;
 	}

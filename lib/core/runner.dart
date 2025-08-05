@@ -3,6 +3,11 @@ import 'dart:collection';
 import 'i_q_hsm_state_machine_helper.dart';
 import 'threaded_code_executor.dart';
 
+//  The method of processing events has been changed Aug 5 2025.
+//  The variant with StreamController<TcEventWrapper>.broadcast() has been implemented.
+//  Unlike the previous method, which uses the Queue<TcEventWrapper> queue, the new method
+//  allows to avoid recursion when processing events.
+
 class TcEventWrapper {
   final Object? _data;
   final String  _event;
@@ -28,8 +33,7 @@ class Runner {
   late String targetState;
 
   Runner (this._helper) {
-
-    print ("Runner constructor [$hashCode]");
+    //print ("Runner constructor [$hashCode]");
     createHandler();
   }
 
@@ -43,15 +47,14 @@ class Runner {
   void dispose() {
     _subscription.cancel();
     _eventController.close();
-    print ('Runner.dispose');
+    print ('------- Runner.dispose -------');
   }
 
   void post(String event, [Object? data]) {
 
-    print ("post [$hashCode] $event");
+    //print ("post [$hashCode] $event");
 
     _eventController.add(TcEventWrapper(event, data));
-
 
     // _eventsQueue.add(TcEventWrapper(event, data));
     // while (_eventsQueue.isNotEmpty) {

@@ -19,6 +19,10 @@ class QHsmHelper implements IQHsmStateMachineHelper {
     runner.post(event, data);
   }
 
+  void dispose() {
+    runner.dispose();
+  }
+
   @override
   ThreadedCodeExecutor? executor(String event) {
     String key = createKey(_state, event);

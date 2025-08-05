@@ -36,7 +36,7 @@ class ParserController {
   }
 
   void dispose() {
-    //stateMachine?.dispose();
+    stateMachine?.dispose();
   }
 
   void addLine(String line) {
