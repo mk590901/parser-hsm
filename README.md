@@ -1,16 +1,25 @@
-# parser_hsm
+# Parser-HSM
 
-A new Flutter project.
+The application demonstrates the work of a lexical parser based on a __hierarchical state machine__.
 
-## Getting Started
+## Introduction
+A hierarchical state machine allows one to simplify the number of operations on text during lexical parsing of an arithmetic expression and replace the logic of lexeme detection by transitions from state to state under the action of events.
 
-This project is a starting point for a Flutter application.
+## State Machine
+Below is the parser's hierarchical state machine, implement the processing of the source arithmetic expression and extract lexemes (tokens).
 
-A few resources to get you started if this is your first Flutter project:
+![hsm](https://github.com/user-attachments/assets/6e142156-34e8-4bea-9267-674a1c6b6659)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Implementation HSM
+ParserHelper is a set of transfer functions of the hierarchical state machine shown in the diagram above. This class is generated automatically by the HSM editor and developer only needs to comment out unnecessary transitions and add links to the parser functions inside the significant functions. By the way, the parser used is a copy of the __parser controller__ from the (https://github.com/mk590901/parser-fsm) project.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Description of application
+The application is a Flutter app with a predefined set of arithmetic expressions. They can be selected using a combo box and parsed by pressing the parse button. The result of parsing is a list of tokens indicating the type and classification.
+
+## Note
+Note. The two applications __Parser HSM__ and __Parser FSM__ (https://github.com/mk590901/parser-fsm) are made in the same style and from the GUI point of view are twin brothers. That is, they completely coincide except for the engine used. In fact, the main goal of these projects was the idea to show that the same tasks can be solved with both FSM and HSM. What exactly to choose is a matter of taste and sympathy of the developer.
+
+## Movie
+
+https://github.com/user-attachments/assets/06046be8-61e1-467d-99d3-47dd1c3f670d
+
