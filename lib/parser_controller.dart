@@ -2,6 +2,7 @@ import 'dart:core';
 import 'bloc/list_bloc.dart';
 import 'interfaces.dart';
 import 'operators.dart';
+import 'typedef.dart';
 import 'parser_helper.dart';
 import 'tokens/token_constant.dart';
 import 'tokens/token_operator.dart';
@@ -21,9 +22,11 @@ class ParserController {
 
   ParserHelper? stateMachine;
 
+  VoidCallbackTokens? callback;
+
   ListBloc? bloc;
 
-  ParserController(this.bloc, this.source, Operators this.operators) {
+  ParserController(this.bloc, this.source, Operators this.operators, this.callback) {
     stateMachine = ParserHelper();
     stateMachine?.setController(this);
     tokens.setController(this);
@@ -157,6 +160,7 @@ class ParserController {
     stopParsing();
     tokens.trace('stop');
     dispose();
+    callback?.call(tokens);
   }
 
   void setError() {

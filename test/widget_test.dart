@@ -9,6 +9,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:parser_hsm/operators.dart';
 import 'package:parser_hsm/parser_controller.dart';
 import 'package:parser_hsm/parser_helper.dart';
+import 'package:parser_hsm/compiler_infix_postfix.dart';
+import 'package:parser_hsm/tokens/tokens.dart';
 
 void main(){
   test('ParserHelper', ()  async  {
@@ -57,7 +59,7 @@ void main(){
   });
 
   test('ParserController One', () async {
-    ParserController parserController = ParserController(null,'ZwLight.Brightness >= 50', Operators());
+    ParserController parserController = ParserController(null,'ZwLight.Brightness >= 50', Operators(), nextStep);
     expect(parserController,isNotNull);
     parserController.parse();
     await Future.delayed(Duration.zero);
@@ -65,7 +67,7 @@ void main(){
   });
 
   test('ParserController Two', () async {
-    ParserController parserController = ParserController(null,'ZwLight.Brightness >= (50+4*8-BLE.Light.Brightness)', Operators());
+    ParserController parserController = ParserController(null,'ZwLight.Brightness >= (50+4*8-BLE.Light.Brightness)', Operators(), nextStep);
     expect(parserController,isNotNull);
     parserController.parse();
     await Future.delayed(Duration.zero);
@@ -73,3 +75,12 @@ void main(){
   });
 
 }
+
+void nextStep(Tokens? tokens) {
+  CompilerInfixPostfix compiler = CompilerInfixPostfix(tokens, Operators());
+  Tokens result  = compiler.compile();
+  result.trace("POSTFIX");
+
+  //tokens?.trace('nextStep');
+}
+

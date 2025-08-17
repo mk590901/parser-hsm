@@ -2,6 +2,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../operators.dart';
 import '../parser_controller.dart';
+import '../compiler_infix_postfix.dart';
+import '../tokens/tokens.dart';
 
 // Events
 abstract class ListEvent {}
@@ -37,6 +39,9 @@ class ListState {
 
 // BLoC
 class ListBloc extends Bloc<ListEvent, ListState> {
+
+  ParserController? parserController;
+
   static final List<String> items = [
     'ZwLight.Brightness >= 50',
     'ZwLight.Brightness>= 50',
@@ -65,12 +70,28 @@ class ListBloc extends Bloc<ListEvent, ListState> {
     });
 
     on<PerformActionEvent>((event, emit) {
-      ParserController parserController = ParserController(
+      /*ParserController*/ parserController = ParserController(
         this,
         state.selectedOption,
         Operators(),
+        nextStep,
       );
-      parserController.parse();
+      parserController?.parse();
     });
   }
+
+  void nextStep(Tokens? tokens) {
+    CompilerInfixPostfix compiler = CompilerInfixPostfix(tokens, Operators());
+    Tokens result  = compiler.compile();
+    result.setController(parserController);
+    result.trace('infix');
+  }
+
 }
+
+// void nextStep(Tokens? tokens) {
+//   CompilerInfixPostfix
+//   compiler = CompilerInfixPostfix(tokens, Operators());
+//   Tokens result  = compiler.compile();
+//   result.trace('infix');
+// }
