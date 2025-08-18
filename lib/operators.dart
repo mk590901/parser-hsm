@@ -40,25 +40,69 @@ class Operators {
   }
 
   void createContainer() {
-    addUnaryOperation(")",    1, null);
-    addUnaryOperation("(",    1, null);
-    addBinaryOperation("==",  4, opEq());
-    addBinaryOperation("!=",  4, opNe());
-    addBinaryOperation("<>",  4, opNe());
-    addBinaryOperation("&&",  3, opAnd());
 
-    addBinaryOperation("*",   3, opMul());
-    addBinaryOperation("/",   3, opDiv());
 
-    addBinaryOperation("<",   4, opLt());
-    addBinaryOperation(">",   4, opGt());
-    addBinaryOperation(">=",  4, opGe());
-    addBinaryOperation("<=",  4, opLe());
+    addUnaryOperation(")",    0, null);
+    addUnaryOperation("(",    0, null);
+    addBinaryOperation("==",  1, opEq());
+    addBinaryOperation("!=",  1, opNe());
+    addBinaryOperation("<>",  1, opNe());
+    addBinaryOperation("&&",  1, opAnd());
+    addBinaryOperation("||",  1, opOr());
 
-    addBinaryOperation("+",   4, opPlus());
-    addBinaryOperation("-",   4, opMinus());
+    addBinaryOperation("*",   4, opMul());
+    addBinaryOperation("/",   4, opDiv());
 
-    addBinaryOperation("||",  2, opOr());
+    addBinaryOperation("<",   2, opLt());
+    addBinaryOperation(">",   2, opGt());
+    addBinaryOperation(">=",  2, opGe());
+    addBinaryOperation("<=",  2, opLe());
+
+    addBinaryOperation("+",   3, opPlus());
+    addBinaryOperation("-",   3, opMinus());
+
+
+    // addUnaryOperation(")",    -2, null);
+    // addUnaryOperation("(",    -2, null);
+    // addBinaryOperation("==",  -1, opEq());
+    // addBinaryOperation("!=",  -1, opNe());
+    // addBinaryOperation("<>",  -1, opNe());
+    // addBinaryOperation("&&",  -1, opAnd());
+    //
+    // addBinaryOperation("*",   2, opMul());
+    // addBinaryOperation("/",   2, opDiv());
+    //
+    // addBinaryOperation("<",   0, opLt());
+    // addBinaryOperation(">",   0, opGt());
+    // addBinaryOperation(">=",  0, opGe());
+    // addBinaryOperation("<=",  0, opLe());
+    //
+    // addBinaryOperation("+",   1, opPlus());
+    // addBinaryOperation("-",   1, opMinus());
+    //
+    // addBinaryOperation("||",  -1, opOr());
+
+
+
+    // addUnaryOperation(")",    1, null);
+    // addUnaryOperation("(",    1, null);
+    // addBinaryOperation("==",  4, opEq());
+    // addBinaryOperation("!=",  4, opNe());
+    // addBinaryOperation("<>",  4, opNe());
+    // addBinaryOperation("&&",  3, opAnd());
+    //
+    // addBinaryOperation("*",   3, opMul());
+    // addBinaryOperation("/",   3, opDiv());
+    //
+    // addBinaryOperation("<",   4, opLt());
+    // addBinaryOperation(">",   4, opGt());
+    // addBinaryOperation(">=",  4, opGe());
+    // addBinaryOperation("<=",  4, opLe());
+    //
+    // addBinaryOperation("+",   4, opPlus());
+    // addBinaryOperation("-",   4, opMinus());
+    //
+    // addBinaryOperation("||",  2, opOr());
   }
 
   void addBinaryOperation(String operationName, int precedence, IOperation? operation) {

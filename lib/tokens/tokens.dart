@@ -9,8 +9,20 @@ class Tokens {
 
   ParserController? controller;
 
+  bool isEmpty() {
+    return container.isEmpty;
+  }
+
+  bool isNotEmpty() {
+    return !isEmpty();
+  }
+
   Tokens() {
     container.clear();
+  }
+
+  IToken last() {
+    return container[size()-1];
   }
 
   void add(IToken token) {

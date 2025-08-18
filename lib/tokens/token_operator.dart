@@ -17,7 +17,7 @@ class TokenOperator extends Token {
 
   @override
   bool isOperator() {
-    return true;
+    return type == Type.Operator;//true;
   }
 
   @override

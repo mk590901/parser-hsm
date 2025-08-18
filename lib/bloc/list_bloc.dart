@@ -43,6 +43,7 @@ class ListBloc extends Bloc<ListEvent, ListState> {
   ParserController? parserController;
 
   static final List<String> items = [
+    "ZwLight > (50 + Brightness)",
     'ZwLight.Brightness >= 50',
     'ZwLight.Brightness>= 50',
     'ZwLight.Brightness >= (50 + BLE.Light.Brightness)',
