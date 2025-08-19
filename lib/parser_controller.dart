@@ -158,7 +158,7 @@ class ParserController {
   void stop() {
     trace("ParserController.stop");
     stopParsing();
-    tokens.trace('stop');
+    //tokens.trace('stop');
     dispose();
     callback?.call(tokens);
   }

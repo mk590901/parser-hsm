@@ -27,13 +27,10 @@ class Runner {
 
   final _eventController = StreamController<TcEventWrapper>.broadcast();
   late StreamSubscription _subscription;
-
-  final Queue<TcEventWrapper>	_eventsQueue	= Queue<TcEventWrapper>();
   final IQHsmStateMachineHelper? _helper;
   late String targetState;
 
   Runner (this._helper) {
-    //print ("Runner constructor [$hashCode]");
     createHandler();
   }
 
@@ -51,19 +48,7 @@ class Runner {
   }
 
   void post(String event, [Object? data]) {
-
-    //print ("post [$hashCode] $event");
-
     _eventController.add(TcEventWrapper(event, data));
-
-    // _eventsQueue.add(TcEventWrapper(event, data));
-    // while (_eventsQueue.isNotEmpty) {
-    //   TcEventWrapper eventWrapper = _eventsQueue.removeFirst();
-    //   ThreadedCodeExecutor? executor = _helper?.executor(eventWrapper.event());
-    //   executor?.executeSync(data);
-    // }
-
-
   }
 
 

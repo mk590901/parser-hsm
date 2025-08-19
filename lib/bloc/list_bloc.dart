@@ -71,7 +71,7 @@ class ListBloc extends Bloc<ListEvent, ListState> {
     });
 
     on<PerformActionEvent>((event, emit) {
-      /*ParserController*/ parserController = ParserController(
+      parserController = ParserController(
         this,
         state.selectedOption,
         Operators(),
@@ -82,17 +82,11 @@ class ListBloc extends Bloc<ListEvent, ListState> {
   }
 
   void nextStep(Tokens? tokens) {
+    tokens?.expression("Infix:   ");
     CompilerInfixPostfix compiler = CompilerInfixPostfix(tokens, Operators());
     Tokens result  = compiler.compile();
     result.setController(parserController);
-    result.trace('infix');
+    result.expression("Postfix: ");
   }
 
 }
-
-// void nextStep(Tokens? tokens) {
-//   CompilerInfixPostfix
-//   compiler = CompilerInfixPostfix(tokens, Operators());
-//   Tokens result  = compiler.compile();
-//   result.trace('infix');
-// }

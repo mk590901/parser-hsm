@@ -74,6 +74,15 @@ class Tokens {
     print('+++++++ $text +++++++');
   }
 
+  void expression(String prompt) {
+    String line = prompt;
+    for (int i = 0; i < size(); i++) {
+      IToken token = get(i);
+      line += ' ${token.getName()}';
+    }
+    controller?.addLine(line);
+  }
+
   void setController(ParserController? parserController) {
     controller = parserController;
   }

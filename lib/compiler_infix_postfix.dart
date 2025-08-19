@@ -14,7 +14,6 @@ class CompilerInfixPostfix {
   }
 
   Tokens compile() {
-    //return _infix2postfix(getTokens()!);
     return toPostfix(getTokens()!);
   }
 
@@ -28,13 +27,11 @@ class CompilerInfixPostfix {
     Tokens output = Tokens();
     Queue<IToken> operatorStack = Queue();
     Tokens tokens = input; //infix;
-    //tokens.trace("------- Prepare -------");
     int openParenCount = 0;
 
     // Checking the token sequence
     for (int i = 0; i < tokens.size(); i++) {
       IToken token = tokens.get(i);
-
       // Checking for invalid characters
       if (!token.isOperand() &&
           !token.isOperator() &&
@@ -80,7 +77,7 @@ class CompilerInfixPostfix {
         if (operatorStack.isEmpty) {
           throw FormatException('Mismatched closing parenthesis');
         }
-        operatorStack.removeFirst(); // Удаляем '('
+        operatorStack.removeFirst(); // Delete '('
         openParenCount--;
       }
     }
@@ -103,43 +100,6 @@ class CompilerInfixPostfix {
       output.add(op);
     }
     return output;
-  }
-
-
-
-  Tokens _infix2postfix(Tokens infix) {
-    _postfix = Tokens();
-    List<IToken> operatorStack = [];
-    IToken? popped;
-
-    for (int i = 0; i < infix.size(); i++) {
-      IToken token = infix.get(i);
-      if (!_isOperator(token)) {
-        _postfix?.add(token);
-      } else if (token.getName().toLowerCase() == ')') {
-        while (operatorStack.isNotEmpty && operatorStack.last.getName().toLowerCase() != '(') {
-          popped = operatorStack.removeLast();
-          _postfix?.add(popped);
-        }
-        if (operatorStack.isNotEmpty) {
-          operatorStack.removeLast(); // Remove '('
-        }
-      } else {
-        while (operatorStack.isNotEmpty &&
-            operatorStack.last.getName().toLowerCase() != '(' &&
-            _precedence(operatorStack.last) >= _precedence(token)) {
-          _postfix!.add(operatorStack.removeLast());
-        }
-        operatorStack.add(token);
-      }
-    }
-
-    // Pop any remaining operators
-    while (operatorStack.isNotEmpty) {
-      _postfix!.add(operatorStack.removeLast());
-    }
-
-    return _postfix!;
   }
 
   bool _isOperator(IToken token) {
