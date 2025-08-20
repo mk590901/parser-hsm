@@ -13,11 +13,11 @@ class CompilerInfixPostfix {
     setOperators(operators);
   }
 
-  Tokens compile() {
+  Tokens? compile() {
     return toPostfix(getTokens()!);
   }
 
-  Tokens toPostfix(Tokens infix) {
+  Tokens? toPostfix(Tokens infix) {
     if (infix.isEmpty()) {
       throw FormatException('Expression is empty');
     }

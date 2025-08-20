@@ -45,6 +45,7 @@ class ListBloc extends Bloc<ListEvent, ListState> {
   static final List<String> items = [
     "ZwLight > (50 + Brightness)",
     'ZwLight.Brightness >= 50',
+    '(F1 + F2) * 5 + >= 50',
     'ZwLight.Brightness>= 50',
     'ZwLight.Brightness >= (50 + BLE.Light.Brightness)',
     'ZwLight.Brightness >= (50+4*8-BLE.Light.Brightness)',
@@ -84,9 +85,18 @@ class ListBloc extends Bloc<ListEvent, ListState> {
   void nextStep(Tokens? tokens) {
     tokens?.expression("Infix:   ");
     CompilerInfixPostfix compiler = CompilerInfixPostfix(tokens, Operators());
-    Tokens result  = compiler.compile();
-    result.setController(parserController);
-    result.expression("Postfix: ");
+    Tokens? result;
+    try {
+      result = compiler.compile();
+    }
+    catch (exception) {
+      parserController?.addLine(exception.toString());
+      result = null;
+    }
+    if (result != null) {
+      result.setController(parserController);
+      result.expression("Postfix: ");
+    }
   }
 
 }

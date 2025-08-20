@@ -78,9 +78,7 @@ void main(){
 
 void nextStep(Tokens? tokens) {
   CompilerInfixPostfix compiler = CompilerInfixPostfix(tokens, Operators());
-  Tokens result  = compiler.compile();
-  result.trace("POSTFIX");
-
-  //tokens?.trace('nextStep');
+  Tokens? result  = compiler.compile();
+  result?.trace("POSTFIX");
 }
 
