@@ -23,7 +23,17 @@ Note. The two applications __Parser HSM__ and __Parser FSM__ (https://github.com
 
 https://github.com/user-attachments/assets/06046be8-61e1-467d-99d3-47dd1c3f670d
 
-## Update
+## Updates
+
+The application has been modified and supplemented
+
+### Asynchronous processing of events.
+
+The previous method synchronous processing of threaded code was replaced by of asynchronous processing inside Runner class. This allowed solving the problem of hidden recursion when calling functions. The StreamController class implements the mechanism of posting of events via the add event operation and processing this event in the listener, which listens for changes of StreamController.
+
+### Transformation of an infix expression into a postfix one
+
+Actually, parsing, implemented using HSM, represented by threaded code, was the purpose of the application. But now I decided to supplement parsing with the operation of transforming an infix expression into a postfix one, or into "Polish" notation. This is not the pure Shunting Yard Algorithm [https://en.m.wikipedia.org/wiki/Shunting_yard_algorithm#:~:text=In%20computer%20science%2C%20the%20shunting,abstract%20syntax%20tree%20(AST)], but some modified version of it that allows detecting some errors.
 
 ## Latest Movie
 
